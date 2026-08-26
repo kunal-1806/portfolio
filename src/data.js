@@ -74,3 +74,11 @@ export const RESUME = {
   viewSrc: '/resume.pdf',
   downloadHref: '/cv-pel134.pdf',
 }
+
+export const ABOUT = {
+  paragraphs: [
+    "I'm a B.Tech CSE student at Lovely Professional University (CGPA 8.80) who enjoys working close to the machinery of language-model applications — designing chunking and indexing pipelines, wiring vector stores, and making retrieval genuinely reliable.",
+    'Most of my recent work sits at the intersection of AI and developer tooling: a RAG-based chatbot with dynamic context retrieval, a terminal-based AI coding assistant with streaming responses, and an adaptive frequency-hopping communication system on ESP32 and Arduino.',
+    'When I step away from projects, I sharpen my fundamentals — 150+ solved Python problems and Infosys certifications in DBMS, data analysis with Pandas, and Python programming.',
+  ],
+}
