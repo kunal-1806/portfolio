@@ -9,6 +9,7 @@ import ResumeSection from './components/ResumeSection'
 import Education from './components/Education'
 import Footer from './components/Footer'
 import PdfModal from './components/PdfModal'
+import Backdrop from './components/Backdrop'
 import { RESUME } from './data'
 
 export default function App() {
@@ -16,7 +17,8 @@ export default function App() {
   const [activeCert, setActiveCert] = useState(null)
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen">
+      <Backdrop />
       <Navbar />
       <main>
         <Hero onOpenResume={() => setResumeOpen(true)} />
