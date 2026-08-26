@@ -43,7 +43,7 @@ export default function PdfModal({ src, title, onClose }) {
         className="mx-auto flex w-full max-w-5xl flex-1 overflow-hidden rounded-xl border border-slate-800"
         onClick={(e) => e.stopPropagation()}
       >
-        <iframe src={src} title={title} className="h-full min-h-[80vh] w-full bg-white" />
+        <iframe src={`${src}#view=FitH`} title={title} className="h-full min-h-[80vh] w-full bg-white" />
       </div>
     </div>
   )

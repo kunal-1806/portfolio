@@ -5,7 +5,7 @@ import PdfModal from './PdfModal'
 describe('PdfModal', () => {
   it('renders an iframe with the given src and title', () => {
     render(<PdfModal src="/resume.pdf" title="Resume" onClose={() => {}} />)
-    expect(screen.getByTitle('Resume')).toHaveAttribute('src', '/resume.pdf')
+    expect(screen.getByTitle('Resume')).toHaveAttribute('src', '/resume.pdf#view=FitH')
   })
 
   it('calls onClose when Escape is pressed', async () => {

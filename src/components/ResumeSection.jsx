@@ -20,11 +20,13 @@ export default function ResumeSection() {
         </a>
       </div>
 
-      <iframe
-        src={RESUME.viewSrc}
-        title="Kunal Tyagi — Resume"
-        className="mt-10 h-[800px] w-full rounded-xl border border-slate-800"
-      />
+      <div className="mx-auto mt-10 w-full max-w-3xl">
+        <iframe
+          src={`${RESUME.viewSrc}#view=FitH`}
+          title="Kunal Tyagi — Resume"
+          className="h-[800px] w-full rounded-xl border border-slate-800"
+        />
+      </div>
 
       <p className="mt-3 text-center text-sm text-slate-500">
         PDF not loading?{' '}
