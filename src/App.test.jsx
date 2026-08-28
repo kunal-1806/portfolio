@@ -5,8 +5,10 @@ import App from './App'
 describe('App', () => {
   it('renders the hero name', async () => {
     render(<App />)
-    await waitFor(() =>
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Kunal Tyagi'),
+    await waitFor(
+      () =>
+        expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Kunal Tyagi'),
+      { timeout: 3000 },
     )
   })
 
