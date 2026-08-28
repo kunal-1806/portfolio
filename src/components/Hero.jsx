@@ -2,12 +2,14 @@ import { Mail, Phone, MapPin, Eye, Download } from 'lucide-react'
 import { LinkedInIcon, GitHubIcon } from './icons'
 import { PROFILE, RESUME } from '../data'
 import useReveal from '../hooks/useReveal'
+import useTypewriter from '../hooks/useTypewriter'
 
 const chipClass =
   'inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/60 px-4 py-1.5 transition hover:border-indigo-500/50'
 
 export default function Hero({ onOpenResume }) {
   const ref = useReveal()
+  const { text: typedName } = useTypewriter(PROFILE.name)
 
   return (
     <section
@@ -19,9 +21,15 @@ export default function Hero({ onOpenResume }) {
         {PROFILE.role}
       </span>
 
-      <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
-        <span className="bg-gradient-to-r from-indigo-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">
-          {PROFILE.name}
+      <h1
+        className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl"
+        aria-label={PROFILE.name}
+      >
+        <span
+          aria-hidden="true"
+          className={`type-caret bg-gradient-to-r from-indigo-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent ${typedName ? '' : 'opacity-0'}`}
+        >
+          {typedName}
         </span>
       </h1>
 

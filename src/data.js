@@ -75,6 +75,12 @@ export const RESUME = {
   downloadHref: '/cv-pel134.pdf',
 }
 
+export const PROBLEM_STATS = [
+  { platform: 'LeetCode', count: 150, suffix: '' },
+  { platform: 'Codetantra', count: 150, suffix: '+' },
+  { platform: 'HackerRank', count: 50, suffix: '' },
+]
+
 export const ABOUT = {
   paragraphs: [
     "I'm a B.Tech CSE student at Lovely Professional University (CGPA 8.80) who enjoys working close to the machinery of language-model applications — designing chunking and indexing pipelines, wiring vector stores, and making retrieval genuinely reliable.",

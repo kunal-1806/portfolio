@@ -1,7 +1,9 @@
-import { MapPin, GraduationCap, Award, FolderGit2, FileBadge2, Terminal } from 'lucide-react'
-import { PROFILE, PROJECTS, CERTIFICATES, ABOUT } from '../data'
+import { MapPin, GraduationCap, Award, FolderGit2, FileBadge2, Code2, Terminal, Medal } from 'lucide-react'
+import { PROFILE, PROJECTS, CERTIFICATES, ABOUT, PROBLEM_STATS } from '../data'
 import SectionHeading from './SectionHeading'
 import useReveal from '../hooks/useReveal'
+import useInView from '../hooks/useInView'
+import useCountUp from '../hooks/useCountUp'
 
 const FACTS = [
   { icon: MapPin, label: 'Location', value: 'Punjab, India' },
@@ -9,14 +11,32 @@ const FACTS = [
   { icon: Award, label: 'CGPA', value: '8.80' },
 ]
 
-const STATS = [
-  { icon: FolderGit2, value: String(PROJECTS.length), label: 'Projects built' },
-  { icon: Terminal, value: '150+', label: 'Problems solved' },
-  { icon: FileBadge2, value: String(CERTIFICATES.length), label: 'Certifications' },
-]
+const ICONS = { LeetCode: Code2, Codetantra: Terminal, HackerRank: Medal }
 
 const cardClass =
   'rounded-2xl border border-slate-800 bg-slate-900/60 p-6 transition hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10'
+
+function CountStat({ icon: Icon, target, suffix, label }) {
+  const [ref, inView] = useInView(0.4)
+  const value = useCountUp(target, inView)
+  return (
+    <div
+      ref={ref}
+      className="flex items-center gap-4 rounded-2xl border border-indigo-500/25 bg-gradient-to-r from-indigo-500/10 to-cyan-400/5 p-5"
+    >
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-slate-950">
+        <Icon size={20} />
+      </span>
+      <div>
+        <p className="text-2xl font-extrabold tracking-tight text-slate-100">
+          {value}
+          {suffix}
+        </p>
+        <p className="text-xs uppercase tracking-widest text-slate-500">{label}</p>
+      </div>
+    </div>
+  )
+}
 
 export default function About() {
   const ref = useReveal()
@@ -35,20 +55,10 @@ export default function About() {
         ))}
       </div>
 
-      <div className="mt-6 grid gap-6 sm:grid-cols-3">
-        {STATS.map(({ icon: Icon, value, label }) => (
-          <div
-            key={label}
-            className="flex items-center gap-4 rounded-2xl border border-indigo-500/25 bg-gradient-to-r from-indigo-500/10 to-cyan-400/5 p-5"
-          >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-slate-950">
-              <Icon size={20} />
-            </span>
-            <div>
-              <p className="text-2xl font-extrabold tracking-tight text-slate-100">{value}</p>
-              <p className="text-xs uppercase tracking-widest text-slate-500">{label}</p>
-            </div>
-          </div>
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <CountStat icon={FolderGit2} target={PROJECTS.length} suffix="" label="Projects built" />
+        {PROBLEM_STATS.map(({ platform, count, suffix }) => (
+          <CountStat key={platform} icon={ICONS[platform]} target={count} suffix={suffix} label={`${platform} problems`} />
         ))}
       </div>
 
