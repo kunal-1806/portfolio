@@ -4,6 +4,7 @@ import SectionHeading from './SectionHeading'
 import useReveal from '../hooks/useReveal'
 import useInView from '../hooks/useInView'
 import useCountUp from '../hooks/useCountUp'
+import ProfileAvatar from './ProfileAvatar'
 
 const FACTS = [
   { icon: MapPin, label: 'Location', value: 'Punjab, India' },
@@ -63,8 +64,15 @@ export default function About() {
       </div>
 
       <div className={`${cardClass} mt-6`}>
-        <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">My Story</p>
-        <div className="mt-3 space-y-4">
+        <div className="mb-5 flex items-center gap-4">
+          <ProfileAvatar className="h-20 w-20" />
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">My Story</p>
+            <h3 className="text-xl font-bold text-slate-100">{PROFILE.name}</h3>
+            <p className="text-sm text-indigo-300">{PROFILE.role}</p>
+          </div>
+        </div>
+        <div className="space-y-4">
           {ABOUT.paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 24)} className="leading-relaxed text-slate-300">
               {paragraph}
