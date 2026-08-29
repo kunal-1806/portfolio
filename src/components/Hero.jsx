@@ -3,6 +3,7 @@ import { LinkedInIcon, GitHubIcon } from './icons'
 import { PROFILE, RESUME } from '../data'
 import useReveal from '../hooks/useReveal'
 import useTypewriter from '../hooks/useTypewriter'
+import ProfileAvatar from './ProfileAvatar'
 
 const chipClass =
   'inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-900/60 px-4 py-1.5 transition hover:border-indigo-500/50'
@@ -28,6 +29,8 @@ export default function Hero({ onOpenResume }) {
         </div>
 
         <div className="p-6 font-mono text-sm leading-relaxed sm:p-8">
+          <ProfileAvatar className="mx-auto mb-6 h-28 w-28" />
+
           <p className="text-slate-500">
             <span className="text-indigo-400">{TERMINAL_USER}</span>:<span className="text-cyan-300">~</span>${' '}
             whoami
