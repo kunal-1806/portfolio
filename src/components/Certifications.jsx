@@ -4,7 +4,7 @@ import SectionHeading from './SectionHeading'
 import useReveal from '../hooks/useReveal'
 
 const cardClass =
-  'w-full rounded-2xl border border-slate-800 bg-slate-900/60 p-6 text-left transition hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500'
+  'group flex w-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 text-left transition hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500'
 
 export default function Certifications({ onOpenCert }) {
   const ref = useReveal()
@@ -16,14 +16,26 @@ export default function Certifications({ onOpenCert }) {
       <div className="grid gap-6 md:grid-cols-3">
         {CERTIFICATES.map(({ title, issuer, date, src }) => (
           <button key={src} type="button" onClick={() => onOpenCert({ title, issuer, date, src })} className={cardClass}>
-            <FileBadge2 size={26} className="mb-4 text-indigo-400" />
-            <h3 className="font-semibold leading-snug text-slate-100">{title}</h3>
-            <p className="mt-1 text-sm text-slate-500">
-              {issuer} · {date}
-            </p>
-            <p className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-cyan-300">
-              View certificate <ArrowUpRight size={15} />
-            </p>
+            <div className="h-44 overflow-hidden border-b border-slate-800 bg-white">
+              <iframe
+                src={`${src}#view=FitH&page=1&toolbar=0&navpanes=0`}
+                title={`${title} preview`}
+                className="pointer-events-none h-48 w-full bg-white transition group-hover:scale-[1.02]"
+                loading="lazy"
+                aria-hidden="true"
+                tabIndex={-1}
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+              <FileBadge2 size={20} className="mb-3 text-indigo-400" />
+              <h3 className="font-semibold leading-snug text-slate-100">{title}</h3>
+              <p className="mt-1 text-sm text-slate-500">
+                {issuer} · {date}
+              </p>
+              <p className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-cyan-300">
+                View certificate <ArrowUpRight size={15} />
+              </p>
+            </div>
           </button>
         ))}
       </div>
