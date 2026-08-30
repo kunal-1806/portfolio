@@ -29,9 +29,31 @@ export default function ScrollProgress() {
     }
   }, [])
 
+  const clamped = Math.min(Math.max(pct, 0), 100)
+  const showPill = clamped > 2 && clamped < 98
+
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-0.5 bg-transparent">
-      <div className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400" style={{ width: `${pct}%` }} />
+    <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60]">
+      <div className="relative h-[3px] w-full bg-slate-800/40">
+        <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${clamped}%` }}>
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-cyan-400 to-violet-500" />
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-cyan-400 to-violet-500 opacity-60 blur-[6px]" />
+          <div className="animate-shimmer absolute inset-y-0 -left-full w-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+        </div>
+        <span
+          className="absolute top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,0.95),0_0_20px_rgba(99,102,241,0.6)]"
+          style={{ left: `calc(${clamped}% - 5px)` }}
+        />
+      </div>
+
+      {showPill && (
+        <div
+          className="absolute -bottom-7 -translate-x-1/2 rounded-full border border-indigo-500/20 bg-slate-900 px-2.5 py-1 text-[11px] font-semibold leading-none text-cyan-200 shadow-lg shadow-black/30"
+          style={{ left: `${clamped}%` }}
+        >
+          {Math.round(clamped)}%
+        </div>
+      )}
     </div>
   )
 }
