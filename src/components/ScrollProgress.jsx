@@ -30,7 +30,6 @@ export default function ScrollProgress() {
   }, [])
 
   const clamped = Math.min(Math.max(pct, 0), 100)
-  const showPill = clamped > 2 && clamped < 98
 
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60]">
@@ -45,15 +44,6 @@ export default function ScrollProgress() {
           style={{ left: `calc(${clamped}% - 5px)` }}
         />
       </div>
-
-      {showPill && (
-        <div
-          className="absolute -bottom-7 -translate-x-1/2 rounded-full border border-indigo-500/20 bg-slate-900 px-2.5 py-1 text-[11px] font-semibold leading-none text-cyan-200 shadow-lg shadow-black/30"
-          style={{ left: `${clamped}%` }}
-        >
-          {Math.round(clamped)}%
-        </div>
-      )}
     </div>
   )
 }
