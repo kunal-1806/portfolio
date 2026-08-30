@@ -10,6 +10,7 @@ import Education from './components/Education'
 import Footer from './components/Footer'
 import PdfModal from './components/PdfModal'
 import Backdrop from './components/Backdrop'
+import ScrollProgress from './components/ScrollProgress'
 import { RESUME } from './data'
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Backdrop />
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero onOpenResume={() => setResumeOpen(true)} />
